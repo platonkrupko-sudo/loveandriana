@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Для тебя!</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffe4e1;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 90%;
+        }
+        img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #d32f2f;
+            font-size: 24px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        #yesBtn {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        #noBtn {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="mainContainer">
+   <img id="mainGif" src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaWN0dmZlMGloZTMxOGx0ZjViZDR2N3N6bGo1ZmQzbms3czltbWRycCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/747ta4N9OeMbCgXeJh/giphy.gif" alt="gif">
+
+    <h1 id="question">Will you be my Valentine?</h1>
+    <div class="buttons">
+        <button id="yesBtn">Yes</button>
+        <button id="noBtn">No</button>
+    </div>
+</div>
+
+<script>
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    const question = document.getElementById('question');
+    const mainGif = document.getElementById('mainGif');
+    const container = document.getElementById('mainContainer');
+
+    let clickCount = 0;
+    const phrases = [
+        "Are you sure?", 
+        "Really sure?", 
+        "Think again!", 
+        "Last chance!", 
+        "Surely not?", 
+        "You might regret this!", 
+        "Give it another thought!", 
+        "Are you absolutely sure?", 
+        "This could be a mistake!", 
+        "Have a heart!", 
+        "Don't be so cold!", 
+        "Change of heart?", 
+        "Wouldn't you reconsider?", 
+        "Is that your final answer?", 
+        "You're breaking my heart ;("
+    ];
+
+    noBtn.addEventListener('click', () => {
+        // Меняем текст кнопки No
+        noBtn.innerText = phrases[Math.min(clickCount, phrases.length - 1)];
+        
+        // Увеличиваем кнопку Yes
+        clickCount++;
+        const currentSize = 18 + (clickCount * 15); // Увеличиваем шрифт на 15px за клик
+        yesBtn.style.fontSize = currentSize + 'px';
+        yesBtn.style.padding = (10 + clickCount * 5) + 'px ' + (20 + clickCount * 10) + 'px';
+        
+        // Если кнопка стала огромной, меняем картинку на грустную
+        if(clickCount === 1) {
+    mainGif.src = "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaWN0dmZlMGloZTMxOGx0ZjViZDR2N3N6bGo1ZmQzbms3czltbWRycCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/747ta4N9OeMbCgXeJh/giphy.gif";
+}
+
+    });
+
+    yesBtn.addEventListener('click', () => {
+    container.innerHTML = `
+<img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNGpzaXptaTYzYXZkZmtlaTJzc2d3OWNyOHg2MHE4djBwaWk2a3VjMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/k9oXK3eqPkc5cR3JKX/giphy.gif" style="width:300px; height:auto;">
+        <h1 style="font-size: 50px;">YAYYY!!! ❤️</h1>
+    `;
+    document.body.style.backgroundColor = "#ffb6c1";
+});
+
+</script>
+
+</body>
+</html>
